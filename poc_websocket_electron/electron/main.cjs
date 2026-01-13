@@ -1,14 +1,22 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const dotenv = require('dotenv');
+
+// Load env files for Electron main process
+// 1) Base .env, 2) Mode-specific .env.<NODE_ENV>
+dotenv.config({ path: path.join(process.cwd(), '.env') });
+if (process.env.NODE_ENV) {
+  dotenv.config({ path: path.join(process.cwd(), `.env.${process.env.NODE_ENV}`) });
+}
 
 let window1 = null;
 let window2 = null;
 
 function createWindow1() {
   window1 = new BrowserWindow({
-    width: 900,
-    height: 800,
-    title: 'Window 1 - Edit First Name',
+    width: 1400,
+    height: 900,
+    title: 'Django Sync POC - Svelte Frontend',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -22,12 +30,10 @@ function createWindow1() {
   const isDev = process.env.NODE_ENV !== 'production';
   
   if (isDev) {
-    window1.loadURL('http://localhost:5173/#/window1');
+    window1.loadURL('http://localhost:5173/');
     window1.webContents.openDevTools();
   } else {
-    window1.loadFile(path.join(__dirname, '../dist/index.html'), {
-      hash: '/window1'
-    });
+    window1.loadFile(path.join(__dirname, '../dist/index.html'));
   }
 
   window1.once('ready-to-show', () => {
@@ -56,12 +62,10 @@ function createWindow2() {
   const isDev = process.env.NODE_ENV !== 'production';
   
   if (isDev) {
-    window2.loadURL('http://localhost:5173/#/window2');
+    window2.loadURL('http://localhost:5173/');
     window2.webContents.openDevTools();
   } else {
-    window2.loadFile(path.join(__dirname, '../dist/index.html'), {
-      hash: '/window2'
-    });
+    window2.loadFile(path.join(__dirname, '../dist/index.html'));
   }
 
   window2.once('ready-to-show', () => {
@@ -83,16 +87,10 @@ function createWindow2() {
 app.whenReady().then(() => {
   // Create both windows
   createWindow1();
-  
-  // Create window2 after a short delay
-  setTimeout(() => {
-    createWindow2();
-  }, 500);
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow1();
-      setTimeout(createWindow2, 500);
     }
   });
 });

@@ -10,6 +10,16 @@ body {
   margin: 0;
 }
 
+/* Hide scrollbars but keep scroll functionality */
+/* Firefox */
+body, .container, .columns { scrollbar-width: none; }
+/* IE/Edge */
+body, .container, .columns { -ms-overflow-style: none; }
+/* WebKit */
+body::-webkit-scrollbar,
+.container::-webkit-scrollbar,
+.columns::-webkit-scrollbar { display: none; }
+
 #app {
   width: 100%;
   height: 100vh;

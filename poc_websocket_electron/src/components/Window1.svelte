@@ -119,12 +119,12 @@
     <div class="create-section">
       <h3>➕ Create New User</h3>
       <div class="form-group">
-        <label>First Name:</label>
-        <input type="text" bind:value={newFirstName} placeholder="Enter first name">
+        <label for="newFirstName">First Name:</label>
+        <input id="newFirstName" type="text" bind:value={newFirstName} placeholder="Enter first name">
       </div>
       <div class="form-group">
-        <label>Last Name:</label>
-        <input type="text" bind:value={newLastName} placeholder="Enter last name">
+        <label for="newLastName">Last Name:</label>
+        <input id="newLastName" type="text" bind:value={newLastName} placeholder="Enter last name">
       </div>
       <button class="btn" on:click={createUser}>Create User</button>
     </div>
@@ -139,16 +139,18 @@
           <div class="user-card">
             <div class="user-id">User ID: {user.id}</div>
             <div class="form-group">
-              <label>First Name: <span class="badge">Editable</span></label>
+              <label for={`first_${user.id}`}>First Name: <span class="badge">Editable</span></label>
               <input 
+                id={`first_${user.id}`}
                 type="text" 
                 value={user.first_name || ''}
                 on:input={(e) => scheduleUpdate(user.id, 'first_name', e.target.value)}
               >
             </div>
             <div class="form-group">
-              <label>Last Name: <span class="badge read-only">Read Only</span></label>
+              <label for={`last_${user.id}`}>Last Name: <span class="badge read-only">Read Only</span></label>
               <input 
+                id={`last_${user.id}`}
                 type="text" 
                 value={user.last_name || ''}
                 readonly

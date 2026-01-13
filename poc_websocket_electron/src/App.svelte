@@ -1,30 +1,40 @@
 <script>
   import Window1 from './components/Window1.svelte';
   import Window2 from './components/Window2.svelte';
-
-  // Get the hash from URL to determine which window to show
-  let currentRoute = window.location.hash.replace('#', '') || '/window1';
-
-  // Listen for hash changes
-  window.addEventListener('hashchange', () => {
-    currentRoute = window.location.hash.replace('#', '') || '/window1';
-  });
 </script>
 
-<main>
-  {#if currentRoute === '/window1'}
-    <Window1 />
-  {:else if currentRoute === '/window2'}
-    <Window2 />
-  {:else}
-    <Window1 />
-  {/if}
+<main class="page">
+  <header class="topbar">Django Sync POC - Svelte Frontend</header>
+  <section class="columns">
+    <div class="column">
+      <Window1 />
+    </div>
+    <div class="column">
+      <Window2 />
+    </div>
+  </section>
 </main>
 
 <style>
-  main {
+  .page {
     width: 100%;
     height: 100vh;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
+  .topbar {
+    color: #fff;
+    font-weight: 700;
+    padding: 16px 24px;
+    font-size: 18px;
+  }
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 24px;
+    overflow: auto;
+  }
+  .column { min-width: 0; }
 </style>

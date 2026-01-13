@@ -9,3 +9,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
   platform: process.platform,
   // Add more APIs as needed
 });
+
+// Expose a safe subset of environment variables to the renderer.
+// Only variables prefixed with RENDERER_ will be forwarded.
+const safeEnv = Object.fromEntries(
+  Object.entries(process.env).filter(([key]) => key.startsWith('RENDERER_'))
+);
+
+contextBridge.exposeInMainWorld('env', safeEnv);
