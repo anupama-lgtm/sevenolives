@@ -1,0 +1,109 @@
+========================================
+QUICK SETUP GUIDE - Django WebSocket POC
+========================================
+
+PREREQUISITES:
+--------------
+1. Python 3.8 or higher installed
+2. Redis server installed
+
+INSTALLATION STEPS:
+------------------
+
+Step 1: Start Redis Server
+--------------------------
+Open a NEW terminal window and run:
+    redis-server
+
+Keep this terminal running!
+
+
+Step 2: Setup Python Environment
+--------------------------------
+Open another terminal in the poc_websocket directory:
+
+# Create virtual environment
+python -m venv venv
+
+# Activate it
+# On Windows:
+venv\Scripts\activate
+# On Linux/Mac:
+source venv/bin/activate
+
+
+Step 3: Install Dependencies
+----------------------------
+pip install -r requirements.txt
+
+
+Step 4: Setup Database
+---------------------
+python manage.py makemigrations
+python manage.py migrate
+
+
+Step 5: Create Sample Data (Optional)
+------------------------------------
+python manage.py shell
+
+Then in the shell, type:
+from user_app.models import User
+User.objects.create(first_name="John", last_name="Doe")
+User.objects.create(first_name="Jane", last_name="Smith")
+exit()
+
+
+Step 6: Run Django Server
+-------------------------
+python manage.py runserver
+
+
+Step 7: Open Windows
+--------------------
+Open your browser:
+- Window 1: http://localhost:8000/window1/
+- Window 2: http://localhost:8000/window2/
+
+Open both in separate tabs/windows!
+
+
+TESTING:
+--------
+1. In Window 1: Edit First Name → See it update in Window 2 (read-only)
+2. In Window 2: Edit Last Name → See it update in Window 1 (read-only)
+3. Both windows update in REAL-TIME via WebSocket!
+
+
+TROUBLESHOOTING:
+---------------
+Q: Redis connection error?
+A: Make sure Redis server is running in a separate terminal
+
+Q: WebSocket not connecting?
+A: Check if Django server is running on port 8000
+
+Q: Changes not syncing?
+A: Check browser console for WebSocket connection status (should show green "Connected")
+
+
+ARCHITECTURE:
+------------
+- Frontend: Pure HTML/CSS/JavaScript with WebSocket client
+- Backend: Django with Django Channels for WebSocket
+- Database: SQLite (can be changed to PostgreSQL)
+- Message Broker: Redis for WebSocket channel layer
+- API: RESTful PATCH endpoint for updates
+
+FEATURES DEMONSTRATED:
+---------------------
+✓ Real-time bidirectional sync between two windows
+✓ WebSocket implementation using Django Channels
+✓ PATCH API for partial updates
+✓ Database persistence
+✓ Read-only fields in respective windows
+✓ Modern, responsive UI
+✓ Automatic reconnection on WebSocket disconnect
+
+Enjoy testing! 🚀
+

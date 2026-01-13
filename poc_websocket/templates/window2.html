@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window 2 - Edit Last Name</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #f5576c;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #f5576c;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+        
+        .user-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .user-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #f5576c;
+            box-shadow: 0 0 0 3px rgba(245, 87, 108, 0.1);
+        }
+        
+        input[readonly] {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+            color: #6c757d;
+        }
+        
+        .btn {
+            background: #f5576c;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            background: #e14657;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .connection-status {
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .connected {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .disconnected {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+        
+        .user-id {
+            color: #f5576c;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .no-users {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+            font-size: 1.1em;
+        }
+        
+        .create-section {
+            background: #fff0f3;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px dashed #f5576c;
+        }
+        
+        .create-section h3 {
+            color: #f5576c;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Window 2 <span class="badge">Edit Last Name</span></h1>
+        <p class="subtitle">You can edit Last Name here. First Name is synced from Window 1 (Read-only)</p>
+        
+        <div id="connectionStatus" class="connection-status disconnected">
+            🔴 Connecting to WebSocket...
+        </div>
+        
+        <div class="create-section">
+            <h3>➕ Create New User</h3>
+            <div class="form-group">
+                <label>First Name:</label>
+                <input type="text" id="newFirstName" placeholder="Enter first name">
+            </div>
+            <div class="form-group">
+                <label>Last Name:</label>
+                <input type="text" id="newLastName" placeholder="Enter last name">
+            </div>
+            <button class="btn" onclick="createUser()">Create User</button>
+        </div>
+        
+        <div id="usersList">
+            {% if users %}
+                {% for user in users %}
+                <div class="user-card" id="user-{{ user.id }}">
+                    <div class="user-id">User ID: {{ user.id }}</div>
+                    <div class="form-group">
+                        <label>First Name: <span class="badge" style="background: #6c757d;">Read Only</span></label>
+                        <input type="text" 
+                               id="firstName-{{ user.id }}" 
+                               value="{{ user.first_name }}"
+                               readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name: <span class="badge">Editable</span></label>
+                        <input type="text" 
+                               id="lastName-{{ user.id }}" 
+                               value="{{ user.last_name }}"
+                               onchange="updateUser({{ user.id }}, 'last_name')">
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-users">
+                    No users found. Create a new user above!
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        let ws = null;
+        
+        // Connect to WebSocket
+        function connectWebSocket() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//${window.location.host}/ws/user-updates/`;
+            
+            ws = new WebSocket(wsUrl);
+            
+            ws.onopen = function(e) {
+                console.log('WebSocket connected');
+                document.getElementById('connectionStatus').className = 'connection-status connected';
+                document.getElementById('connectionStatus').innerHTML = '🟢 Connected to WebSocket';
+            };
+            
+            ws.onmessage = function(e) {
+                const data = JSON.parse(e.data);
+                console.log('WebSocket message received:', data);
+                
+                if (data.type === 'user_update') {
+                    handleUserUpdate(data.data);
+                }
+            };
+            
+            ws.onerror = function(e) {
+                console.error('WebSocket error:', e);
+            };
+            
+            ws.onclose = function(e) {
+                console.log('WebSocket closed');
+                document.getElementById('connectionStatus').className = 'connection-status disconnected';
+                document.getElementById('connectionStatus').innerHTML = '🔴 WebSocket Disconnected';
+                
+                // Reconnect after 3 seconds
+                setTimeout(connectWebSocket, 3000);
+            };
+        }
+        
+        // Handle user update from WebSocket
+        function handleUserUpdate(data) {
+            if (data.action === 'update') {
+                const user = data.user;
+                updateUserCard(user);
+            } else if (data.action === 'create') {
+                const user = data.user;
+                addUserCard(user);
+            } else if (data.action === 'delete') {
+                removeUserCard(data.user_id);
+            }
+        }
+        
+        // Update user card in UI
+        function updateUserCard(user) {
+            const firstNameInput = document.getElementById(`firstName-${user.id}`);
+            const lastNameInput = document.getElementById(`lastName-${user.id}`);
+            
+            if (firstNameInput && lastNameInput) {
+                firstNameInput.value = user.first_name;
+                // Only update if the field is not currently focused (to avoid overwriting user's input)
+                if (document.activeElement.id !== `lastName-${user.id}`) {
+                    lastNameInput.value = user.last_name;
+                }
+            }
+        }
+        
+        // Add new user card to UI
+        function addUserCard(user) {
+            const usersList = document.getElementById('usersList');
+            const existingCard = document.getElementById(`user-${user.id}`);
+            
+            if (!existingCard) {
+                const card = document.createElement('div');
+                card.className = 'user-card';
+                card.id = `user-${user.id}`;
+                card.innerHTML = `
+                    <div class="user-id">User ID: ${user.id}</div>
+                    <div class="form-group">
+                        <label>First Name: <span class="badge" style="background: #6c757d;">Read Only</span></label>
+                        <input type="text" 
+                               id="firstName-${user.id}" 
+                               value="${user.first_name}"
+                               readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name: <span class="badge">Editable</span></label>
+                        <input type="text" 
+                               id="lastName-${user.id}" 
+                               value="${user.last_name}"
+                               onchange="updateUser(${user.id}, 'last_name')">
+                    </div>
+                `;
+                usersList.appendChild(card);
+            }
+        }
+        
+        // Remove user card from UI
+        function removeUserCard(userId) {
+            const card = document.getElementById(`user-${userId}`);
+            if (card) {
+                card.remove();
+            }
+        }
+        
+        // Update user via PATCH API
+        function updateUser(userId, field) {
+            const inputId = field === 'first_name' ? `firstName-${userId}` : `lastName-${userId}`;
+            const value = document.getElementById(inputId).value;
+            
+            const data = {};
+            data[field] = value;
+            
+            fetch(`/api/users/${userId}/`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('User updated:', data);
+            })
+            .catch(error => {
+                console.error('Error updating user:', error);
+            });
+        }
+        
+        // Create new user
+        function createUser() {
+            const firstName = document.getElementById('newFirstName').value;
+            const lastName = document.getElementById('newLastName').value;
+            
+            fetch('/api/users/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    first_name: firstName,
+                    last_name: lastName
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('User created:', data);
+                document.getElementById('newFirstName').value = '';
+                document.getElementById('newLastName').value = '';
+            })
+            .catch(error => {
+                console.error('Error creating user:', error);
+            });
+        }
+        
+        // Initialize WebSocket connection
+        connectWebSocket();
+    </script>
+</body>
+</html>
+
