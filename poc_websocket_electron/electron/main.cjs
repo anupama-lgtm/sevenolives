@@ -1,12 +1,18 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const dotenv = require('dotenv');
+const fs = require('fs');
 
-// Load env files for Electron main process
-// 1) Base .env, 2) Mode-specific .env.<NODE_ENV>
-dotenv.config({ path: path.join(process.cwd(), '.env') });
-if (process.env.NODE_ENV) {
-  dotenv.config({ path: path.join(process.cwd(), `.env.${process.env.NODE_ENV}`) });
+const root = process.cwd();
+const mode = process.env.NODE_ENV || 'development';
+const envPaths = [
+  path.join(root, 'electron/.env'),
+  path.join(root, `electron/.env.${mode}`),
+  path.join(root, '.env'),
+  path.join(root, `.env.${mode}`)
+];
+for (const p of envPaths) {
+  if (fs.existsSync(p)) dotenv.config({ path: p });
 }
 
 let window1 = null;

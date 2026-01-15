@@ -1,0 +1,204 @@
+{
+    "assessments": [
+        {
+            "name": "session-checks",
+            "psyexp": "session-checks.psyexp"
+        },
+        {
+            "name": "ActionNaming_DruksMasterson",
+            "psyexp": "action-naming.psyexp"
+        },
+        {
+            "name": "ActionSimilarity_KissingDancing_V1",
+            "psyexp": "kissing-dancing.psyexp"
+        },
+        {
+            "name": "ArabicNumeralReading_URMC_V1",
+            "psyexp": "an-reading.psyexp"
+        },
+        {
+            "name": "Arousal_LevelsConsciousness_UCSF_V1",
+            "psyexp": "arousal.psyexp"
+        },
+        {
+            "name": "AuditoryNaming_UCSF_V1",
+            "psyexp": "AudNaming.psyexp"
+        },
+        {
+            "name": "BeckAnxietyInventory_V1",
+            "psyexp": "bai.psyexp"
+        },
+        {
+            "name": "BeckDepressionInventory_V1",
+            "psyexp": "bdi.psyexp"
+        },
+        {
+            "name": "BellsCancellation_V1",
+            "psyexp": "bells-cancellation.psyexp"
+        },
+        {
+            "name": "BigFivePersonality_Short_V1",
+            "psyexp": "bfi-10.psyexp"
+        },
+        {
+            "name": "ColorOfObjects_URMC_V1",
+            "psyexp": "color-of-objects.psyexp"
+        },
+        {
+            "name": "CookieTheft_Hillis_V1",
+            "psyexp": "cookie-theft.psyexp"
+        },
+        {
+            "name": "Digit_Span_V1",
+            "psyexp": "digit_span.psyexp"
+        },
+        {
+            "name": "EORTC_IADLBN32_V1",
+            "psyexp": "eortc-iadl.psyexp"
+        },
+        {
+            "name": "EORTC_QLQBN20_V1",
+            "psyexp": "eortc-qlq.psyexp"
+        },
+        {
+            "name": "EORTC_QLQC30_V1",
+            "psyexp": "eortc-qlqc.psyexp"
+        },
+        {
+            "name": "FunctionalAssessmentCancerTherapy_Br_V1",
+            "psyexp": "fact-br.psyexp"
+        },
+        {
+            "name": "HandednessFootedness_V1",
+            "psyexp": "handedness-footedness.psyexp"
+        },
+        {
+            "name": "Hollingshead_SES_V1",
+            "psyexp": "ses.psyexp"
+        },
+        {
+            "name": "IntransitiveGestureToCommand_URMC_V1",
+            "psyexp": "intransitive-gesturing.psyexp"
+        },
+        {
+            "name": "KarnofskyPerformanceScale_V1",
+            "psyexp": "karnofsky-performance.psyexp"
+        },
+        {
+            "name": "LowerFaceApraxia_Oxford_V1",
+            "psyexp": "lower-apraxia.psyexp"
+        },
+        {
+            "name": "MinimalPairs_PALPA_V1",
+            "psyexp": "min-pairs.psyexp"
+        },
+        {
+            "name": "MoodMeter_V1",
+            "psyexp": "mood-meter.psyexp"
+        },
+        {
+            "name": "Navon_URMC_V2",
+            "psyexp": "navon.psyexp"
+        },
+        {
+            "name": "NeuroQOL_Communication_V1",
+            "psyexp": "nqol-communication.psyexp"
+        },
+        {
+            "name": "NeuroQOL_Mobility_V1",
+            "psyexp": "nqol-mobility.psyexp"
+        },
+        {
+            "name": "NeuroQoL_ShortForm_Cognition_V1",
+            "psyexp": "nqol-cogfunction.psyexp"
+        },
+        {
+            "name": "NeuroQOL_UpperExtremityFineMotor_V1",
+            "psyexp": "nqol-uefm.psyexp"
+        },
+        {
+            "name": "NonWordRepetition_PALPA_V1",
+            "psyexp": "nw-repetition.psyexp"
+        },
+        {
+            "name": "NovelGestureImitation_V1",
+            "psyexp": "novel-gestures.psyexp"
+        },
+        {
+            "name": "PictureNaming_URMC_V1",
+            "psyexp": "picture-naming.psyexp"
+        },
+        {
+            "name": "PictureRhymeJudgements_PALPA_V1",
+            "psyexp": "picture-rhymes.psyexp"
+        },
+        {
+            "name": "PremorbidFunction_Pearson_V1",
+            "psyexp": "premorbid-function.psyexp"
+        },
+        {
+            "name": "PyramidsPalmTrees_Pearson_V1",
+            "psyexp": "pyramids-palmtrees.psyexp"
+        },
+        {
+            "name": "QuickAphasiaBattery_V1",
+            "psyexp": "qab.psyexp"
+        },
+        {
+            "name": "ReversibleLetterNaming_URMC_V1",
+            "psyexp": "rev-letter-naming.psyexp"
+        },
+        {
+            "name": "Rey_AVLT_V1",
+            "psyexp": "rey-avlt.psyexp"
+        },
+        {
+            "name": "SentenceCompletion_CMU_V1",
+            "psyexp": "sentence-completion.psyexp"
+        },
+        {
+            "name": "SentenceGeneration_URMC_V1",
+            "psyexp": "sentence-generation.psyexp"
+        },
+        {
+            "name": "SentenceRepetition_URMC_V1",
+            "psyexp": "sentence-repetition.psyexp"
+        },
+        {
+            "name": "SizeWeightJudgements_URMC_V1",
+            "psyexp": "swi.psyexp"
+        },
+        {
+            "name": "SoundNaming_CMU_V1",
+            "psyexp": "sound-naming.psyexp"
+        },
+        {
+            "name": "Stroop_DKEFS_V1",
+            "psyexp": "stroop-dkefs.psyexp"
+        },
+        {
+            "name": "TaxonomicThematic_V1",
+            "psyexp": "theme-tax.psyexp"
+        },
+        {
+            "name": "TrailMaking_V1",
+            "psyexp": "trail-making.psyexp"
+        },
+        {
+            "name": "TransitiveGesture",
+            "psyexp": "transitive-gesture.psyexp"
+        },
+        {
+            "name": "UpperFaceApraxia_Oxford_V1",
+            "psyexp": "upper-apraxia.psyexp"
+        },
+        {
+            "name": "VerbalFluency_DKEFS_V1",
+            "psyexp": "verbal-fluency.psyexp"
+        },
+        {
+            "name": "WordNonWord_PALPA_V1",
+            "psyexp": "wnw-reading.psyexp"
+        }
+    ]
+}

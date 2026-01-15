@@ -1,0 +1,120 @@
+{
+    "assessments": [
+        {
+            "name": "session-checks",
+            "psyexp": "session-checks.psyexp"
+        },
+        {
+            "name": "session-review",
+            "psyexp": "session-review.psyexp"
+        },
+        {
+            "name": "MoodMeter_V1",
+            "psyexp": "mood-meter.psyexp"
+        },
+        {
+            "name": "HandednessFootedness_V1",
+            "psyexp": "handedness-footedness.psyexp"
+        },
+        {
+            "name": "Hollingshead_SES_V1",
+            "psyexp": "ses.psyexp"
+        },
+        {
+            "name": "BigFivePersonality_Short_V1",
+            "psyexp": "bfi-10.psyexp"
+        },
+        {
+            "name": "CostHealthCare_FACIT_V1",
+            "psyexp": "cost-facit.psyexp"
+        },
+        {
+            "name": "EORTC_QLQC30_V1",
+            "psyexp": "eortc-qlqc.psyexp"
+        },
+        {
+            "name": "EORTC_QLQBN20_V1",
+            "psyexp": "eortc-qlq.psyexp"
+        },
+        {
+            "name": "EORTC_IADLBN32_V1",
+            "psyexp": "eortc-iadl.psyexp"
+        },
+        {
+            "name": "Arousal_LevelsConsciousness_UCSF_V1",
+            "psyexp": "Arousal.psyexp"
+        },
+        {
+            "name": "TrailMaking_V1",
+            "psyexp": "trail-making.psyexp"
+        },
+        {
+            "name": "BellsCancellation_V1",
+            "psyexp": "bells-cancellation.psyexp"
+        },
+        {
+            "name": "CookieTheft_Hillis_V1",
+            "psyexp": "cookie-theft.psyexp"
+        },
+        {
+            "name": "CaterpillarPassage_V1",
+            "psyexp": "passage-reading.psyexp"
+        },
+        {
+            "name": "QuickAphasiaBattery_V1",
+            "psyexp": "qab.psyexp"
+        },
+        {
+            "name": "MinimalPairs_PALPA_V1",
+            "psyexp": "min-pairs.psyexp"
+        },
+        {
+            "name": "BostonNaming_Standard_V1",
+            "psyexp": "boston-naming.psyexp"
+        },
+        {
+            "name": "ActionNaming_DruksMasterson",
+            "psyexp": "action-naming.psyexp"
+        },
+        {
+            "name": "AuditoryDefinitionNaming_CMU_V1",
+            "psyexp": "auditory-definition.psyexp"
+        },
+        {
+            "name": "SentenceRepetition_URMC_V1",
+            "psyexp": "sentence-repetition.psyexp"
+        },
+        {
+            "name": "SentenceGeneration_URMC_V1",
+            "psyexp": "sentence-generation.psyexp"
+        },
+        {
+            "name": "WordNonWord_PALPA_V1",
+            "psyexp": "wnw-reading.psyexp"
+        },
+        {
+            "name": "Digit_Span_V1",
+            "psyexp": "digit_span.psyexp"
+        },
+        {
+            "name": "VerbalFluency_DKEFS_V1",
+            "psyexp": "verbal-fluency.psyexp"
+        },
+        {
+            "name": "PyramidsPalmTrees_Pearson_V1",
+            "psyexp": "pyramids-palmtrees.psyexp"
+        },
+        {
+            "name": "ActionSimilarity_KissingDancing_V1",
+            "psyexp": "kissing-dancing.psyexp"
+        },
+        {
+            "name": "QuickApraxiaScreener_V1",
+            "psyexp": "qas.psyexp"
+        },
+        {
+            "name": "KarnofskyPerformanceScale_V1",
+            "psyexp": "karnofsky-performance.psyexp"
+        }
+    ]
+}

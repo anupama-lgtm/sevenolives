@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',  # CORS for Electron app
     'user_app',
+    'mindtrace',
 ]
 
 MIDDLEWARE = [
